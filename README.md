@@ -1,6 +1,6 @@
 # NewbieTask
 
-> 新手任务
+> 前端框架：Nuxtjs(vue+express)，H5项目
 
 ## Build Setup
 
