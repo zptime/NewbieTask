@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-let SERVER_URL = ' https://h5.133.cn/hangban' // api url
+const SERVER_URL = ' https://h5.133.cn/hangban' // api url
 
 const Axios = axios.create({
   baseURL: SERVER_URL, // 设置默认api url
@@ -34,7 +34,7 @@ const axiosPost = (url, req, res, callback) => {
       callback(response.data)
     }
     res.json(response.data)
-  }).catch(err => {
+  }).catch((err) => {
     res.json(err)
   })
 }
@@ -45,7 +45,7 @@ const axiosGet = (url, req, res, callback) => {
       callback(response.data)
     }
     res.json(response.data)
-  }).catch(err => {
+  }).catch((err) => {
     res.json(err)
   })
 }
@@ -54,5 +54,3 @@ module.exports = {
   axiosPost,
   axiosGet
 }
-
-

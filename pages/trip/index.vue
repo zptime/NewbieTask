@@ -14,8 +14,6 @@
 
 <script>
 export default {
-  components: {
-  },
   data () {
     return {
       city: '',
@@ -100,7 +98,7 @@ export default {
 }
 
 .list {
-  margin: 0 0.3rem;
+  margin: 0 0.3rem 0.2rem;
   background-color: #fff;
 
   .list-item {

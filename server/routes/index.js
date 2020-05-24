@@ -1,8 +1,10 @@
 const { Router } = require('express')
 const router = Router()
-const { axiosPost, axiosGet } = require('../apiConfig')
+const { axiosGet } = require('../apiConfig')
+const { checkCityParams, addTimestamp } = require('../controllers/auth')
 
-router.get('/basic/search_airport', (req, res) => {
+// 城市模糊查询
+router.get('/basic/search_airport', checkCityParams, addTimestamp, (req, res) => {
   axiosGet('/basic/search_airport', req, res)
 })
 
