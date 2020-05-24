@@ -23,7 +23,7 @@ export default {
   },
   watch: {
     city (val) {
-      if (val.trim().length > 0) {
+      if (val && val.trim().length > 0) {
         this.debouncedCity()
       }
     }
@@ -42,11 +42,13 @@ export default {
   },
   methods: {
     initData () {
-      this.$axios.get('/basic/search_airport', {
-        params: { q: this.city }
-      }).then((res) => {
-        this.cityList = res
-      })
+      if (this.city && this.city.length > 0) {
+        this.$axios.get('/basic/search_airport', {
+          params: { q: this.city }
+        }).then((res) => {
+          this.cityList = res
+        })
+      }
     },
     debounce (fn, wait) {
       // 防抖函数：重复点击，只执行最后一次
