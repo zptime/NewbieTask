@@ -21,6 +21,7 @@
     "express-session": "^1.17.1",
     "js-cookie": "^2.2.1",
     "mescroll.js": "^1.4.2",
+    "mongoose": "^5.9.15",
     "nuxt": "^2.0.0",
     "vue-awesome-swiper": "^3.1.3"
   },

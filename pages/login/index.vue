@@ -51,15 +51,21 @@ export default {
   methods: {
     doLogin () {
       if (this.phoneState && this.codeState) {
-        this.$setStorage('loginState', true)
-        const userInfo = {
-          id: 2916,
-          name: '航班管家',
+        this.$axios.post('/api/login', {
           phone: this.phone,
-          avatar: 'download.menggaliuang.io/picture/20200119/eebf2b4dea6eed4f18582de8ab38be76.jpeg'
-        }
-        this.$setStorage('user', JSON.stringify(userInfo))
-        this.$router.go(-1) // 返回上一页
+          password: this.code
+        }).then((res) => {
+          this.$setStorage('loginState', true)
+          const userInfo = {
+            id: 2916,
+            name: '航班管家',
+            phone: this.phone,
+            avatar: 'download.menggaliuang.io/picture/20200119/eebf2b4dea6eed4f18582de8ab38be76.jpeg'
+          }
+          this.$setStorage('user', JSON.stringify(userInfo))
+          alert(res)
+          this.$router.go(-1) // 返回上一页
+        })
       }
     }
   }

@@ -17,9 +17,12 @@ export default {
   mounted () {},
   methods: {
     logout () {
-      this.$setStorage('loginState', false)
-      this.$setStorage('user', '')
-      this.$router.go(-1) // 返回上一页
+      this.$axios.post('/api/logout').then((res) => {
+        this.$setStorage('loginState', false)
+        this.$setStorage('user', '')
+        alert(res)
+        this.$router.go(-1) // 返回上一页
+      })
     }
   }
 }
