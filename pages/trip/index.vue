@@ -1,12 +1,26 @@
 <template>
   <div class="section-wrap mescroll">
-    <div class="item">
-      <input v-model="city" class="item-input" placeholder="请输入城市名，防抖模糊查询">
-      <img class="item-search" src="/images/icon_search.png">
-    </div>
-    <div class="list">
-      <div v-for="item in cityList" :key="item.id" class="list-item">
-        {{ item.name }}
+    <div class="top-list">
+      <div class="top-list-left">
+        <div class="item">
+          <input v-model="city" class="item-input" placeholder="请输入城市名，防抖模糊查询">
+          <img class="item-search" src="/images/icon_search.png">
+        </div>
+        <div class="list">
+          <div v-for="item in cityList" :key="item.id" class="list-item">
+            {{ item.name }}
+          </div>
+        </div>
+      </div>
+      <div class="top-list-right">
+        <el-button type="primary" class="item-button" @click="searchCity">
+          我的接口查询
+        </el-button>
+        <div class="list">
+          <div v-for="item in citiesData.datas" :key="item.id" class="list-item">
+            {{ item.name }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -18,6 +32,7 @@ export default {
     return {
       city: '',
       cityList: [],
+      citiesData: [],
       debouncedCity: null
     }
   },
@@ -50,6 +65,16 @@ export default {
         })
       }
     },
+    searchCity () {
+      if (this.city && this.city.length > 0) {
+        this.$axios.get('/api/cities', {
+          params: { keyword: this.city }
+        }).then((res) => {
+          this.citiesData = res
+          console.log(this.citiesData)
+        })
+      }
+    },
     debounce (fn, wait) {
       // 防抖函数：重复点击，只执行最后一次
       const delay = wait || 500
@@ -70,6 +95,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.top-list {
+  display: flex;
+  flex-direction: row;
+
+  .top-list-left {
+    flex: 2;
+  }
+  .top-list-right {
+    flex: 1;
+
+    .item-button{
+      margin: 0.38rem 0.1rem;
+    }
+  }
+}
+
 .item {
   display: flex;
   align-items: center;
@@ -90,6 +131,7 @@ export default {
     height: inherit;
     color: #00001B;
     font-weight: bold;
+    width: 100%;
 
     &::placeholder {
       color: #C0C6CC;

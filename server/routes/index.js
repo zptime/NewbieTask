@@ -2,7 +2,7 @@ const { Router } = require('express')
 const router = Router()
 const { axiosGet } = require('../apiConfig')
 const { checkCityParams, addTimestamp } = require('../db/controllers/auth')
-const { copyCreate } = require('../db/controllers/citys')
+const { copyCreate, findByKeyword } = require('../db/controllers/cities')
 
 // 登录
 router.post('/api/login', (req, res) => {
@@ -23,6 +23,9 @@ router.post('/api/logout', (req, res) => {
     res.json('退出登录成功！')
   })
 })
+
+// 查询城市数据
+router.get('/api/cities', findByKeyword)
 
 // 城市模糊查询
 router.get('/basic/search_airport', checkCityParams, addTimestamp, (req, res, next) => {
