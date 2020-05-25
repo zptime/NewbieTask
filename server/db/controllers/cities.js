@@ -1,7 +1,7 @@
 
 const City = require('../models/cities')
 
-class CitysCtl {
+class CityCtl {
   async copyCreate (keyword, datas) { // 复制新增
     const repeatedCity = await City.findOne({ keyword })
     if (repeatedCity) { // 如果存在，就更新
@@ -32,10 +32,10 @@ class CitysCtl {
     const { keyword } = req.query
     const city = await City.findOne({ keyword })
     if (!city) {
-      res.status(200).json('数据不存在')
+      return res.status(200).json('数据不存在')
     }
     res.status(200).json(city)
   }
 }
 
-module.exports = new CitysCtl()
+module.exports = new CityCtl()

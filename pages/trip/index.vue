@@ -23,6 +23,9 @@
         </div>
       </div>
     </div>
+    <div class="log-list">
+      "/api/logs/analysis"接口的日志统计：{{ logData }}
+    </div>
   </div>
 </template>
 
@@ -33,6 +36,7 @@ export default {
       city: '',
       cityList: [],
       citiesData: [],
+      logData: '',
       debouncedCity: null
     }
   },
@@ -64,6 +68,13 @@ export default {
           this.cityList = res
         })
       }
+
+      // 日志查询
+      this.$axios.post('/api/logs/analysis', {
+        keyword: '/basic/search_airport'
+      }).then((res) => {
+        this.logData = JSON.stringify(res)
+      })
     },
     searchCity () {
       if (this.city && this.city.length > 0) {
@@ -151,5 +162,12 @@ export default {
     color: #000;
     padding: 0 0.2rem;
   }
+}
+
+.log-list{
+  margin: 0.1rem 0.3rem;
+  padding: 0.1rem;
+  word-break: break-all;
+  background-color: #fff;
 }
 </style>
