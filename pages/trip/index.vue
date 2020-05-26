@@ -68,13 +68,6 @@ export default {
           this.cityList = res
         })
       }
-
-      // 日志查询
-      this.$axios.post('/api/logs/analysis', {
-        keyword: '/basic/search_airport'
-      }).then((res) => {
-        this.logData = JSON.stringify(res)
-      })
     },
     searchCity () {
       if (this.city && this.city.length > 0) {
@@ -85,6 +78,12 @@ export default {
           console.log(this.citiesData)
         })
       }
+      // 日志查询
+      this.$axios.post('/api/logs/analysis', {
+        keyword: '/basic/search_airport'
+      }).then((res) => {
+        this.logData = JSON.stringify(res)
+      })
     },
     debounce (fn, wait) {
       // 防抖函数：重复点击，只执行最后一次
