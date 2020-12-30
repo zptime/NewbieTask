@@ -23,6 +23,10 @@ const setHeaderConfigAction = (name) => {
     config.title = '登录'
   }
 
+  if (name === 'mine-redPackedRain') {
+    config.title = '红包雨'
+  }
+
   return config
 }
 

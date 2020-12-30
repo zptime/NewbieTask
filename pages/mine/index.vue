@@ -21,7 +21,7 @@ export default {
         { icon: '/images/icon_person.png', title: '常用乘机人', path: '/mine/info', isLogin: true },
         { icon: '/images/icon_address.png', title: '常用邮寄地址', path: '/mine/info', isLogin: true },
         { icon: '/images/icon_contact.png', title: '联系客服', path: '/mine/setting' },
-        { icon: '/images/icon_about.png', title: '关于我们', path: '/mine/setting' }
+        { icon: '/images/icon_about.png', title: '红包雨', path: '/mine/redPacketRain' }
       ]
     }
   },
